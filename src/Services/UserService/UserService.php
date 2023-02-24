@@ -44,7 +44,7 @@ class UserService implements UserServiceInterface
             ->getQuery()
             ->getResult();
 
-        if(!$usersArray){
+        if (!$usersArray) {
             throw new EntityNotFoundException(_('Список пользователей пуст'));
         }
 
@@ -60,7 +60,7 @@ class UserService implements UserServiceInterface
         $user = $this->entityManager->getRepository(User::class)
             ->findOneBy(['id' => $id, 'soft_delete' => false]);
         if ($user === null) {
-            throw new EntityNotFoundException(sprintf(_('Пользователь с id:%s не найден.'),$id));
+            throw new EntityNotFoundException(sprintf(_('Пользователь с id:%s не найден.'), $id));
         }
 
         return $user;
@@ -71,9 +71,9 @@ class UserService implements UserServiceInterface
      */
     public function createUser(UserDataDTO $userInfo): int
     {
-        if($userInfo->getParentId()){
+        if ($userInfo->getParentId()) {
             $isParentExist = $this->getUserById($userInfo->getParentId());
-            if($isParentExist){
+            if ($isParentExist) {
                 $this->hasParent($userInfo->getParentId());
             } else {
                 throw new \Exception(_('Вы не можете привязать родителя с таким id, он не существует!'));
@@ -82,16 +82,16 @@ class UserService implements UserServiceInterface
 
         $createdUser = new User();
         $createdUser
-        ->setFirstName($userInfo->getFirstName())
-        ->setLastName($userInfo->getLastName())
-        ->setEmail($userInfo->getEmail())
-        ->setCreatedAt(new \DateTimeImmutable())
-        ->setSoftDelete(false);
+            ->setFirstName($userInfo->getFirstName())
+            ->setLastName($userInfo->getLastName())
+            ->setEmail($userInfo->getEmail())
+            ->setCreatedAt(new \DateTimeImmutable())
+            ->setSoftDelete(false);
 
-         $this->entityManager->persist($createdUser);
-         $this->entityManager->flush();
+        $this->entityManager->persist($createdUser);
+        $this->entityManager->flush();
 
-         return $createdUser->getId();
+        return $createdUser->getId();
     }
 
     /**
@@ -99,7 +99,7 @@ class UserService implements UserServiceInterface
      */
     public function hasParent(int $parentId): void
     {
-        if($this->getUserById($parentId)->getParentId()){
+        if ($this->getUserById($parentId)->getParentId()) {
             throw new \Exception(_('Пользователь c parentId уже имеет родителя, привяжите другого!'));
         }
     }
@@ -107,7 +107,7 @@ class UserService implements UserServiceInterface
     /**
      * @inheritDoc
      */
-    public function editUser(UserDataDTO $userInfo,int $userId): int
+    public function editUser(UserDataDTO $userInfo, int $userId): int
     {
 //        для случая если придется менять parentId
 //        if($userId === $userInfo->getParentId()){
@@ -125,7 +125,7 @@ class UserService implements UserServiceInterface
             ->setLastName($userInfo->getLastName())
             ->setUpdatedAt(new \DateTimeImmutable());
 
-        $this->entityManager->getRepository(User::class)->save($user,true);
+        $this->entityManager->getRepository(User::class)->save($user, true);
 
         return $user->getId();
     }
@@ -141,7 +141,7 @@ class UserService implements UserServiceInterface
             ->setSoftDelete(true)
             ->setDeletedAt(new \DateTimeImmutable());
 
-        $this->entityManager->getRepository(User::class)->save($user,true);
+        $this->entityManager->getRepository(User::class)->save($user, true);
 
     }
 

@@ -5,7 +5,8 @@ namespace App\Normalizers;
 use App\Entity\User;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class UserNormalizer implements NormalizerInterface {
+class UserNormalizer implements NormalizerInterface
+{
 
     /**
      * @inheritdoc
@@ -20,16 +21,16 @@ class UserNormalizer implements NormalizerInterface {
      */
     public function normalize($object, $format = null, array $context = [])
     {
-        if($context['mode'] === 'default' && $object instanceof User){
-        $userArray = [
-            'first_name'=>$object->getFirstName(),
-            'last_name'=>$object->getLastName(),
-            'email'=>$object->getEmail(),
-            'createdAt'=>$object->getCreatedAt(),
-            'updatedAt'=>$object->getUpdatedAt(),
-        ];
+        if ($context['mode'] === 'default' && $object instanceof User) {
+            $userArray = [
+                'first_name' => $object->getFirstName(),
+                'last_name' => $object->getLastName(),
+                'email' => $object->getEmail(),
+                'createdAt' => $object->getCreatedAt(),
+                'updatedAt' => $object->getUpdatedAt(),
+            ];
 
-        return $this->normalizeDateTimeProperties($userArray);
+            return $this->normalizeDateTimeProperties($userArray);
         }
 
         return [];

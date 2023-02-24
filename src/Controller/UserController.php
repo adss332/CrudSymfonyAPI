@@ -47,8 +47,8 @@ class UserController extends AbstractController
      */
     public function __construct(
         UserServiceInterface $userService,
-        ValidatorInterface $validator,
-        SerializerInterface $serializer
+        ValidatorInterface   $validator,
+        SerializerInterface  $serializer
     )
     {
         $this->userService = $userService;
@@ -80,7 +80,7 @@ class UserController extends AbstractController
 
         if (count($violations) > 0) {
             return new JsonResponse(
-                ['message' => (string) $violations],
+                ['message' => (string)$violations],
                 Response::HTTP_BAD_REQUEST
             );
         }
@@ -135,7 +135,7 @@ class UserController extends AbstractController
             $result = [];
             $users = $this->userService->getUsersByPageAndLimit($page, $limit);
             foreach ($users as $user) {
-               $result[] = $this->serializer->normalize($user,'json',['mode'=>'default']);
+                $result[] = $this->serializer->normalize($user, 'json', ['mode' => 'default']);
             }
         } catch (EntityNotFoundException $e) {
             return new JsonResponse($e->getMessage(), Response::HTTP_NOT_FOUND);
@@ -180,7 +180,7 @@ class UserController extends AbstractController
 
         if (count($violations) > 0) {
             return new JsonResponse(
-                ['message' => (string) $violations],
+                ['message' => (string)$violations],
                 Response::HTTP_BAD_REQUEST
             );
         }
@@ -223,7 +223,7 @@ class UserController extends AbstractController
         }
 
         return new JsonResponse(
-            $this->serializer->normalize($result,'json',['mode'=>'default'])
+            $this->serializer->normalize($result, 'json', ['mode' => 'default'])
         );
     }
 
