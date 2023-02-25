@@ -23,8 +23,8 @@ class UserRepository extends ServiceEntityRepository
 
     public function getUsersByPageAndLimit(int $page, int $limit): array
     {
-       $offset = ($page - 1) * $limit;
-       return $this->getEntityManager()->getRepository(User::class)->createQueryBuilder('u')
+        $offset = ($page - 1) * $limit;
+        return $this->getEntityManager()->getRepository(User::class)->createQueryBuilder('u')
             ->where('u.soft_delete = false')
             ->orderBy('u.createdAt', 'DESC')
             ->setFirstResult($offset)

@@ -29,7 +29,9 @@ class UserController extends AbstractController
         private UserServiceInterface $userService,
         private ValidatorInterface   $validator,
         private SerializerInterface  $serializer
-    ){}
+    )
+    {
+    }
 
     /**
      * Создание пользователя
@@ -65,7 +67,7 @@ class UserController extends AbstractController
         } catch (Exception $e) {
             return new JsonResponse(
                 ['message' => $e->getMessage()],
-                Response::HTTP_NOT_FOUND
+                Response::HTTP_BAD_REQUEST
             );
         }
 

@@ -31,9 +31,11 @@ class UserNormalizer implements NormalizerInterface
             ];
 
             return $this->normalizeDateTimeProperties($userArray);
+        } else if ($context['mode'] && $context['mode'] !== 'default') {
+            return ['message' => 'Неизвестный mode контекста.'];
         }
 
-        return [];
+        return ['message' => 'Не указан mode в контексте.'];
     }
 
     /**
