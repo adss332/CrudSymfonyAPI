@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\DTO\UserDataDTO;
+use App\DTO\UserPutDTO;
 use App\Services\UserService\UserServiceInterface;
 use Doctrine\ORM\EntityNotFoundException;
 use Exception;
@@ -172,7 +173,7 @@ class UserController extends AbstractController
      */
     public function editUserById(Request $request, int $id): JsonResponse
     {
-        $userInfo = new UserDataDTO($request->toArray());
+        $userInfo = new UserPutDTO($request->toArray());
 
         $violations = $this->validator->validate($userInfo);
 

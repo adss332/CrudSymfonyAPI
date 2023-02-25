@@ -6,10 +6,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\User;
 
 /**
- * Class UserDataDTO
+ * Class UserPutDTO
  * @package App\DTO
  */
-class UserDataDTO
+class UserPutDTO
 {
     /**
      * @var string
@@ -25,21 +25,6 @@ class UserDataDTO
      */
     private $last_name;
 
-    /**
-     * @var string
-     * @Assert\NotBlank
-     * @Assert\Email(
-     *     message = "The email '{{ value }}' is not a valid email.",
-     * )
-     * @Assert\Unique(entityClass="App\Entity\User", message="This email is already used.")
-     */
-    private $email;
-
-    /**
-     * @var int|null
-     * @Assert\Type(type="integer")
-     */
-    private $parentId;
 
     /**
      * @inheritdoc
@@ -48,8 +33,6 @@ class UserDataDTO
     {
         $this->first_name = $data['first_name'];
         $this->last_name = $data['last_name'];
-        $this->email = $data['email'] ?? null ;
-        $this->parentId = $data['parentId'] ?? null;
     }
 
     /**
@@ -60,8 +43,6 @@ class UserDataDTO
         return [
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
-            'email' => $this->email,
-            'parentId' => $this->parentId,
         ];
     }
 
@@ -79,22 +60,6 @@ class UserDataDTO
     public function getLastName(): string
     {
         return $this->last_name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getParentId(): ?int
-    {
-        return $this->parentId;
     }
 
 }

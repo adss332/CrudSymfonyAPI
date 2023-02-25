@@ -3,6 +3,7 @@
 namespace App\Services\UserService;
 
 use App\DTO\UserDataDTO;
+use App\DTO\UserPutDTO;
 use App\Entity\User;
 
 /**
@@ -36,11 +37,11 @@ interface UserServiceInterface
 
     /**
      * Отредактировать пользователя по идентификатору
-     * @param UserDataDTO $userInfo
+     * @param UserPutDTO $userInfo
      * @param int $userId
      * @return int
      */
-    public function editUser(UserDataDTO $userInfo, int $userId): int;
+    public function editUser(UserPutDTO $userInfo, int $userId): int;
 
     /**
      * Проверяет есть ли у родителя родитель

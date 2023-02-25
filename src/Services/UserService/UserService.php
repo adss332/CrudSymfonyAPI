@@ -3,6 +3,7 @@
 namespace App\Services\UserService;
 
 use App\DTO\UserDataDTO;
+use App\DTO\UserPutDTO;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\User;
 use Doctrine\ORM\EntityNotFoundException;
@@ -67,7 +68,7 @@ class UserService implements UserServiceInterface
         if ($userInfo->getParentId()) {
             $isParentExist = $this->getUserById($userInfo->getParentId());
             if ($isParentExist) {
-                $this->hasPareknt($userInfo->getParentId());
+                $this->hasParent($userInfo->getParentId());
             } else {
                 throw new \Exception(_('Вы не можете привязать родителя с таким id, он не существует!'));
             }
@@ -99,7 +100,7 @@ class UserService implements UserServiceInterface
     /**
      * @inheritDoc
      */
-    public function editUser(UserDataDTO $userInfo, int $userId): int
+    public function editUser(UserPutDTO $userInfo, int $userId): int
     {
 //        для случая если придется менять parentId
 //        if($userId === $userInfo->getParentId()){
