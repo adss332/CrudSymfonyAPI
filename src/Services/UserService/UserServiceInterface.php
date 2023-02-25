@@ -2,8 +2,8 @@
 
 namespace App\Services\UserService;
 
-use App\DTO\UserDataDTO;
-use App\DTO\UserPutDTO;
+use App\DTO\UserCreateDTO;
+use App\DTO\UserUpdateDTO;
 use App\Entity\User;
 
 /**
@@ -30,18 +30,18 @@ interface UserServiceInterface
 
     /**
      * Создать пользователя
-     * @param UserDataDTO $userInfo
+     * @param UserCreateDTO $userInfo
      * @return int
      */
-    public function createUser(UserDataDTO $userInfo): int;
+    public function createUser(UserCreateDTO $userInfo): int;
 
     /**
      * Отредактировать пользователя по идентификатору
-     * @param UserPutDTO $userInfo
+     * @param UserUpdateDTO $userInfo
      * @param int $userId
      * @return int
      */
-    public function editUser(UserPutDTO $userInfo, int $userId): int;
+    public function editUser(UserUpdateDTO $userInfo, int $userId): int;
 
     /**
      * Проверяет есть ли у родителя родитель

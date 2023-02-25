@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
-use DateTimeImmutable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -15,60 +14,51 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 class User
 {
     /**
-     * @var int
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private int $id;
 
     /**
-     * @var string
      * @ORM\Column(type="string")
      */
-    private $first_name;
+    private string $first_name;
 
     /**
-     * @var string
      * @ORM\Column(type="string")
      */
-    private $last_name;
+    private string $last_name;
 
     /**
-     * @var string
      * @ORM\Column(type="string")
      */
-    private $email;
+    private string $email;
 
     /**
-     * @var int|null
      * @ORM\Column(type="integer",nullable=true)
      */
-    private $parent_id = null;
+    private int|null $parent_id = null;
 
     /**
-     * @var DateTimeImmutable
      * @ORM\Column(type="datetime_immutable")
      */
-    private $createdAt;
+    private \DateTimeImmutable $createdAt;
 
     /**
-     * @var DateTimeImmutable
      * @ORM\Column(type="datetime_immutable",nullable=true)
      */
-    private $updatedAt = null;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     /**
-     * @var bool
      * @ORM\Column(type="boolean")
      */
-    private $soft_delete = false;
+    private bool $soft_delete = false;
 
     /**
-     * @var DateTimeImmutable
      * @ORM\Column(type="datetime_immutable",nullable=true)
      */
-    private $deletedAt = null;
+    private ?\DateTimeImmutable $deletedAt = null;
 
     public function getId(): int
     {
@@ -123,7 +113,7 @@ class User
         return $this;
     }
 
-    public function getCreatedAt(): DateTimeImmutable
+    public function getCreatedAt(): \DateTimeImmutable
     {
         return $this->createdAt;
     }
@@ -140,7 +130,7 @@ class User
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(DateTimeImmutable $updatedAt): self
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -164,7 +154,7 @@ class User
         return $this->deletedAt;
     }
 
-    public function setDeletedAt(DateTimeImmutable $deletedAt): self
+    public function setDeletedAt(\DateTimeImmutable $deletedAt): self
     {
         $this->deletedAt = $deletedAt;
 

@@ -6,54 +6,46 @@ use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\User;
 
 /**
- * Class UserDataDTO
+ * Class UserCreateDTO
  * @package App\DTO
  */
-class UserDataDTO
+class UserCreateDTO
 {
     /**
-     * @var string
      * @Assert\NotBlank
      * @Assert\Type(type="string")
      */
-    private $first_name;
+    private string $first_name;
 
     /**
-     * @var string
      * @Assert\NotBlank
      * @Assert\Type(type="string")
      */
-    private $last_name;
+    private string $last_name;
 
     /**
-     * @var string
      * @Assert\NotBlank
      * @Assert\Email(
      *     message = "The email '{{ value }}' is not a valid email.",
      * )
-     * @Assert\Unique(entityClass="App\Entity\User", message="This email is already used.")
      */
-    private $email;
+    private string $email;
 
     /**
-     * @var int|null
      * @Assert\Type(type="integer")
      */
-    private $parentId;
+    private int|null $parentId;
 
-    /**
-     * @inheritdoc
-     */
     public function __construct(array $data)
     {
         $this->first_name = $data['first_name'];
         $this->last_name = $data['last_name'];
-        $this->email = $data['email'] ?? null ;
-        $this->parentId = $data['parentId'] ?? null;
+        $this->email = $data['email'];
+        $this->parentId = $data['parentId'];
     }
 
     /**
-     * @inheritdoc
+     * @return array
      */
     public function toArray(): array
     {

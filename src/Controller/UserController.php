@@ -3,8 +3,8 @@
 
 namespace App\Controller;
 
-use App\DTO\UserDataDTO;
-use App\DTO\UserPutDTO;
+use App\DTO\UserCreateDTO;
+use App\DTO\UserUpdateDTO;
 use App\Services\UserService\UserServiceInterface;
 use Doctrine\ORM\EntityNotFoundException;
 use Exception;
@@ -24,38 +24,12 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 class UserController extends AbstractController
 {
-    /**
-     * @var UserServiceInterface
-     */
-    private $userService;
 
-    /**
-     * @var ValidatorInterface
-     */
-    private $validator;
-
-    /**
-     * @var SerializerInterface
-     */
-
-    private $serializer;
-
-    /**
-     * UserController constructor.
-     * @param UserServiceInterface $userService
-     * @param ValidatorInterface $validator
-     * @param SerializerInterface $serializer
-     */
     public function __construct(
-        UserServiceInterface $userService,
-        ValidatorInterface   $validator,
-        SerializerInterface  $serializer
-    )
-    {
-        $this->userService = $userService;
-        $this->validator = $validator;
-        $this->serializer = $serializer;
-    }
+        private UserServiceInterface $userService,
+        private ValidatorInterface   $validator,
+        private SerializerInterface  $serializer
+    ){}
 
     /**
      * Создание пользователя
@@ -75,7 +49,7 @@ class UserController extends AbstractController
      */
     public function createUser(Request $request): JsonResponse
     {
-        $userInfo = new UserDataDTO($request->toArray());
+        $userInfo = new UserCreateDTO($request->toArray());
 
         $violations = $this->validator->validate($userInfo);
 
@@ -173,7 +147,7 @@ class UserController extends AbstractController
      */
     public function editUserById(Request $request, int $id): JsonResponse
     {
-        $userInfo = new UserPutDTO($request->toArray());
+        $userInfo = new UserUpdateDTO($request->toArray());
 
         $violations = $this->validator->validate($userInfo);
 

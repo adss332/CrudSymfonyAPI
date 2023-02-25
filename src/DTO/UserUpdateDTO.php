@@ -6,29 +6,23 @@ use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\User;
 
 /**
- * Class UserPutDTO
+ * Class UserUpdateDTO
  * @package App\DTO
  */
-class UserPutDTO
+class UserUpdateDTO
 {
     /**
-     * @var string
      * @Assert\NotBlank
      * @Assert\Type(type="string")
      */
-    private $first_name;
+    private string $first_name;
 
     /**
-     * @var string
      * @Assert\NotBlank
      * @Assert\Type(type="string")
      */
-    private $last_name;
+    private string $last_name;
 
-
-    /**
-     * @inheritdoc
-     */
     public function __construct(array $data)
     {
         $this->first_name = $data['first_name'];
@@ -36,7 +30,7 @@ class UserPutDTO
     }
 
     /**
-     * @inheritdoc
+     * @return array
      */
     public function toArray(): array
     {
