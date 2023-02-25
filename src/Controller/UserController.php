@@ -155,8 +155,6 @@ class UserController extends AbstractController
      *     @OA\JsonContent(
      *     @OA\Property(property="first_name", type="string", description="Имя"),
      *     @OA\Property(property="last_name", type="string", description="Фамилия"),
-     *     @OA\Property(property="email", type="string", description="Email"),
-     *     @OA\Property(property="parentId", type="integer", nullable=true, default=null, description="Идентификатор родителя"),
      *     )
      * )
      * @OA\Parameter(
