@@ -31,7 +31,7 @@ class User
     private string $last_name;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string",unique=true)
      */
     private string $email;
 
