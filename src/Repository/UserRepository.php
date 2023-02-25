@@ -21,6 +21,18 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    public function getUsersByPageAndLimit(int $page, int $limit): array
+    {
+       $offset = ($page - 1) * $limit;
+       return $this->entityManager->getRepository(User::class)->createQueryBuilder('u')
+            ->where('u.soft_delete = false')
+            ->orderBy('u.createdAt', 'DESC')
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
     public function save(User $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);

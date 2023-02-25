@@ -35,14 +35,7 @@ class UserService implements UserServiceInterface
      */
     public function getUsersByPageAndLimit(int $page, int $limit): array
     {
-        $offset = ($page - 1) * $limit;
-        $usersArray = $this->entityManager->getRepository(User::class)->createQueryBuilder('u')
-            ->where('u.soft_delete = false')
-            ->orderBy('u.createdAt', 'DESC')
-            ->setFirstResult($offset)
-            ->setMaxResults($limit)
-            ->getQuery()
-            ->getResult();
+        $usersArray = $this->entityManager->getRepository(User::class)->getUsersByPageAndLimit($page,$limit);
 
         if (!$usersArray) {
             throw new EntityNotFoundException(_('Список пользователей пуст'));
@@ -74,7 +67,7 @@ class UserService implements UserServiceInterface
         if ($userInfo->getParentId()) {
             $isParentExist = $this->getUserById($userInfo->getParentId());
             if ($isParentExist) {
-                $this->hasParent($userInfo->getParentId());
+                $this->hasPareknt($userInfo->getParentId());
             } else {
                 throw new \Exception(_('Вы не можете привязать родителя с таким id, он не существует!'));
             }
@@ -88,8 +81,7 @@ class UserService implements UserServiceInterface
             ->setCreatedAt(new \DateTimeImmutable())
             ->setSoftDelete(false);
 
-        $this->entityManager->persist($createdUser);
-        $this->entityManager->flush();
+        $this->entityManager->getRepository(User::class)->save($createdUser, true);
 
         return $createdUser->getId();
     }

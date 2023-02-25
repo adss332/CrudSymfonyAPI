@@ -28,7 +28,7 @@ interface UserServiceInterface
 
 
     /**
-     * Получить пользователя по идентификатору
+     * Создать пользователя
      * @param UserDataDTO $userInfo
      * @return int
      */
