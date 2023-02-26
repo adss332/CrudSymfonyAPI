@@ -74,6 +74,7 @@ class UserService implements UserServiceInterface
             ->setLastName($userInfo->getLastName())
             ->setEmail($userInfo->getEmail())
             ->setCreatedAt(new \DateTimeImmutable())
+            ->setParentId($userInfo->getParentId())
             ->setSoftDelete(false);
 
         $this->userRepository->save($createdUser, true);

@@ -15,18 +15,18 @@ class UserUpdateDTO
      * @Assert\NotBlank
      * @Assert\Type(type="string")
      */
-    private string $first_name;
+    private string $firstName;
 
     /**
      * @Assert\NotBlank
      * @Assert\Type(type="string")
      */
-    private string $last_name;
+    private string $lastName;
 
     public function __construct(array $data)
     {
-        $this->first_name = $data['first_name'];
-        $this->last_name = $data['last_name'];
+        $this->firstName = $data['first_name'];
+        $this->lastName = $data['last_name'];
     }
 
     /**
@@ -36,7 +36,7 @@ class UserUpdateDTO
     {
         return [
             'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
+            'last_name' => $this->lastName,
         ];
     }
 
@@ -45,7 +45,7 @@ class UserUpdateDTO
      */
     public function getFirstName(): string
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
     /**
@@ -53,7 +53,7 @@ class UserUpdateDTO
      */
     public function getLastName(): string
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
 }

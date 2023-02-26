@@ -23,12 +23,12 @@ class User
     /**
      * @ORM\Column(type="string")
      */
-    private string $first_name;
+    private string $firstName;
 
     /**
      * @ORM\Column(type="string")
      */
-    private string $last_name;
+    private string $lastName;
 
     /**
      * @ORM\Column(type="string",unique=true)
@@ -38,7 +38,7 @@ class User
     /**
      * @ORM\Column(type="integer",nullable=true)
      */
-    private int|null $parent_id = null;
+    private int|null $parentId = null;
 
     /**
      * @ORM\Column(type="datetime_immutable")
@@ -67,24 +67,24 @@ class User
 
     public function getFirstName(): string
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
-    public function setFirstName(string $first_name): self
+    public function setFirstName(string $firstName): self
     {
-        $this->first_name = $first_name;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     public function getLastName(): string
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
-    public function setLastName(string $last_name): self
+    public function setLastName(string $lastName): self
     {
-        $this->last_name = $last_name;
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -103,12 +103,12 @@ class User
 
     public function getParentId(): ?int
     {
-        return $this->parent_id;
+        return $this->parentId;
     }
 
-    public function setParentId(int|null $parent_id): self
+    public function setParentId(int|null $parentId): self
     {
-        $this->parent_id = $parent_id;
+        $this->parentId = $parentId;
 
         return $this;
     }

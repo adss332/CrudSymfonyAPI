@@ -15,13 +15,13 @@ class UserCreateDTO
      * @Assert\NotBlank
      * @Assert\Type(type="string")
      */
-    private string $first_name;
+    private string $firstName;
 
     /**
      * @Assert\NotBlank
      * @Assert\Type(type="string")
      */
-    private string $last_name;
+    private string $lastName;
 
     /**
      * @Assert\NotBlank
@@ -38,8 +38,8 @@ class UserCreateDTO
 
     public function __construct(array $data)
     {
-        $this->first_name = $data['first_name'];
-        $this->last_name = $data['last_name'];
+        $this->firstName = $data['first_name'];
+        $this->lastName = $data['last_name'];
         $this->email = $data['email'];
         $this->parentId = $data['parentId'];
     }
@@ -50,8 +50,8 @@ class UserCreateDTO
     public function toArray(): array
     {
         return [
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
+            'first_name' => $this->firstName,
+            'last_name' => $this->lastName,
             'email' => $this->email,
             'parentId' => $this->parentId,
         ];
@@ -62,7 +62,7 @@ class UserCreateDTO
      */
     public function getFirstName(): string
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
     /**
@@ -70,7 +70,7 @@ class UserCreateDTO
      */
     public function getLastName(): string
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
     /**
