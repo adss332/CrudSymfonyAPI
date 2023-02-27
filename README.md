@@ -1,6 +1,6 @@
 
 <h1>Short Description</h1>
-<p>I did test crud operations with Rest API, which based on the one Entity - User.</p>
+<p>I did СRUD operations with Rest API, which based on the one Entity - User.</p>
 <b>These endpoints:</b>
 <p>
 <ol>
