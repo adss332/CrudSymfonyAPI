@@ -1,8 +1,36 @@
 
-<h1>Краткое описание</h1>
-<p>По тз реализованы все методы, я также накатил nelmio_api_doc и добавил аннотации опенАпи, чтобы можно было протыкать кейсы (это типа не соответствует принципу yagni, но я больше думал о своем удобстве, ну и как плюшка при проверке) 
-<p>Я постарался выполнить все условия из тз, но есть пара моментов , которые я могу поправить, если будет немного больше времени.</p>
-<ul>
-  <li>Когда накатывал симфони, не учел про UUID и воспользовался mysql вместо postrge, когда обнаружил было уже поздно</li>
-  <li>Тесты тоже могу написать, если будет чуток больше времени.</li>
-</ul>
+<h1>Short Description</h1>
+<p>I did test crud operations with Rest API, which based on the one Entity - User.</p>
+<b>These endpoints:</b>
+<p>
+<ol>
+<li>
+For post requests to create user (/users)
+</li>
+<li>
+For get requests to get all users by page and limit - (/users/{page}/{limit})
+</li>
+<li>
+For get requests to get the one user by id - (/users/{id})
+</li>
+<li>
+For put requests to update data (first_name, last_name only) - (/users/{uuid})
+</li>
+<li>
+For delete requests to delete user by id - {/user/{uuid}}
+</li>
+</ol>
+</p>
+<b>
+Some conditions in technical documentation were about:
+</b>
+<p>
+<ol>
+<li>User email need to be unique</li>
+<li>Some properties , which is stored in DB as DateTime need to be string(ISO 8601) in API responses</li>
+<li>User can have only one level of nesting per parent</li>
+<li>Dates (update,create,delete) should be stored as date time in database
+<li>Deleting an user should be soft</li>
+<li>Request content-type should be application/json</li>
+</ol>
+</p>
