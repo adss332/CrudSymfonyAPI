@@ -5,19 +5,19 @@
 <p>
 <ol>
 <li>
-For post requests to create user (/users)
+For POST requests to create user (/users)
 </li>
 <li>
-For get requests to get all users by page and limit - (/users/{page}/{limit})
+For GET requests to retrieve all users by page and limit - (/users/{page}/{limit})
 </li>
 <li>
-For get requests to get the one user by id - (/users/{id})
+For GET requests to retrieve the one user by id - (/users/{id})
 </li>
 <li>
-For put requests to update data (first_name, last_name only) - (/users/{uuid})
+For PUT requests to update data (only first_name and last_name are allowed)  - (/users/{uuid})
 </li>
 <li>
-For delete requests to delete user by id - {/user/{uuid}}
+For DELETE requests to delete user by id - {/user/{uuid}}
 </li>
 </ol>
 </p>
@@ -26,11 +26,11 @@ Some conditions in technical documentation were about:
 </b>
 <p>
 <ol>
-<li>User email need to be unique</li>
-<li>Some properties , which is stored in DB as DateTime need to be string(ISO 8601) in API responses</li>
+<li>User emails need to be unique</li>
+<li>Properties stored as DateTime in the database need to be returned as strings in API responses (in the ISO 8601 format).</li>
 <li>User can have only one level of nesting per parent</li>
-<li>Dates (update,create,delete) should be stored as date time in database
-<li>Deleting an user should be soft</li>
-<li>Request content-type should be application/json</li>
+<li>Dates for updates, creations, and deletions should be stored as datetime in the database.</li>
+<li>When deleting user, it should be a soft deletion</li>
+<li>The request content-type should be application/json</li>
 </ol>
 </p>
